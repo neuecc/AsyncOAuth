@@ -15,7 +15,12 @@ namespace AsyncOAuth
         IEnumerable<KeyValuePair<string, string>> parameters;
 
         public OAuthMessageHandler(string consumerKey, string consumerSecret, Token token = null, IEnumerable<KeyValuePair<string, string>> optionalOAuthHeaderParameters = null)
-            : base(new HttpClientHandler())
+            : this(new HttpClientHandler(), consumerKey, consumerSecret, token, optionalOAuthHeaderParameters)
+        {
+        }
+
+        public OAuthMessageHandler(HttpMessageHandler innerHandler, string consumerKey, string consumerSecret, Token token = null, IEnumerable<KeyValuePair<string, string>> optionalOAuthHeaderParameters = null)
+            : base(innerHandler)
         {
             this.consumerKey = consumerKey;
             this.consumerSecret = consumerSecret;

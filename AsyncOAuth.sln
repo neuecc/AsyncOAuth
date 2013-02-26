@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{36461CE6-8
 		Docs\AsyncOAuth.nuspec = Docs\AsyncOAuth.nuspec
 		Docs\pack.bat = Docs\pack.bat
 		Docs\push.bat = Docs\push.bat
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
