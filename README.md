@@ -5,7 +5,7 @@ Portable Client Library and HttpClient based OAuth library, including all platfo
 
 Install
 ---
-using with NuGet
+using with NuGet  
 PM> Install-Package AsyncOAuth -Pre
 
 Usage
