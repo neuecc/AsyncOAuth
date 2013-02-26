@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncOAuth.ConsoleApp", "As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncOAuth.WindowsStoreApp", "AsyncOAuth.WindowsStoreApp\AsyncOAuth.WindowsStoreApp.csproj", "{8AE19756-F952-49E7-977B-68CC9626FD0C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{36461CE6-8D3B-4F43-AFA5-C190569860BE}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\AsyncOAuth.nuspec = Docs\AsyncOAuth.nuspec
+		Docs\pack.bat = Docs\pack.bat
+		Docs\push.bat = Docs\push.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
