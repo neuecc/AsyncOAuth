@@ -88,7 +88,7 @@ namespace AsyncOAuth.ConsoleApp
         // if you use Rx, you can write follows
         //public IObservable<string> GetStream()
         //{
-        //    return Observable.Create<string>(async (observer, cts) =>
+        //    return Observable.Create<string>(async (observer, ct) =>
         //    {
         //        try
         //        {
@@ -96,7 +96,7 @@ namespace AsyncOAuth.ConsoleApp
         //            using (var stream = await client.GetStreamAsync("https://userstream.twitter.com/1.1/user.json"))
         //            using (var sr = new StreamReader(stream))
         //            {
-        //                while (!sr.EndOfStream && !cts.IsCancellationRequested)
+        //                while (!sr.EndOfStream && !ct.IsCancellationRequested)
         //                {
         //                    var s = await sr.ReadLineAsync();
         //                    observer.OnNext(s);
@@ -108,7 +108,7 @@ namespace AsyncOAuth.ConsoleApp
         //            observer.OnError(ex);
         //            return;
         //        }
-        //        if (!cts.IsCancellationRequested)
+        //        if (!ct.IsCancellationRequested)
         //        {
         //            observer.OnCompleted();
         //        }
