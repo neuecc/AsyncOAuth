@@ -5,8 +5,10 @@ Portable Client Library and HttpClient based OAuth library, including all platfo
 
 Install
 ---
-using with NuGet  
+using with NuGet(Including PreRelease), [AsyncOAuth](https://nuget.org/packages/AsyncOAuth/)
+```
 PM> Install-Package AsyncOAuth -Pre
+```
 
 Usage
 ---
@@ -62,8 +64,41 @@ var json = await response.Content.ReadAsStringAsync();
 
 Sample
 ---
-more sample, please see AsyncOAuth.ConsoleApp(Twitter.cs, Hatena.cs), AsyncOAuth.WindowsStoreApp
+more sample, please see AsyncOAuth.ConsoleApp(Twitter.cs, Hatena.cs), AsyncOAuth.WindowsStoreApp  
+sample contains authorize flow
+
+```csharp
+// sample flow for Twitter authroize
+public async static Task<AccessToken> AuthorizeSample(string consumerKey, string consumerSecret)
+{
+    // create authorizer
+    var authorizer = new OAuthAuthorizer(consumerKey, consumerSecret);
+
+    // get request token
+    var tokenResponse = await authorizer.GetRequestToken("https://api.twitter.com/oauth/request_token");
+    var requestToken = tokenResponse.Token;
+
+    var pinRequestUrl = authorizer.BuildAuthorizeUrl("https://api.twitter.com/oauth/authorize", requestToken);
+
+    // open browser and get PIN Code
+    Process.Start(pinRequestUrl);
+
+    // enter pin
+    Console.WriteLine("ENTER PIN");
+    var pinCode = Console.ReadLine();
+
+    // get access token
+    var accessTokenResponse = await authorizer.GetAccessToken("https://api.twitter.com/oauth/access_token", requestToken, pinCode);
+
+    // save access token.
+    var accessToken = accessTokenResponse.Token;
+    Console.WriteLine("Key:" + accessToken.Key);
+    Console.WriteLine("Secret:" + accessToken.Secret);
+
+    return accessToken;
+}
+```
 
 License
 ---
-under MIT License
+under [MIT License](http://opensource.org/licenses/MIT)
