@@ -12,7 +12,7 @@ PM> Install-Package AsyncOAuth -Pre
 
 Usage
 ---
-at first, yout must initialize hash function(ApplicationStart etc...)
+at first, you must initialize hash function(ApplicationStart etc...)
 
 ```csharp
 // Silverlight, Windows Phone, Console, Web, etc...
