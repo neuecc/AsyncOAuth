@@ -63,3 +63,7 @@ var json = await response.Content.ReadAsStringAsync();
 Sample
 ---
 more sample, please see AsyncOAuth.ConsoleApp(Twitter.cs, Hatena.cs), AsyncOAuth.WindowsStoreApp
+
+License
+---
+under MIT License
