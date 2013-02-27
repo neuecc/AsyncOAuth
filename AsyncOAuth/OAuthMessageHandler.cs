@@ -37,7 +37,8 @@ namespace AsyncOAuth
                 if (request.Content is FormUrlEncodedContent)
                 {
                     var extraParameter = await request.Content.ReadAsStringAsync();
-                    sendParameter = sendParameter.Concat(Utility.ParseQueryString(extraParameter.UrlDecode()));
+                    var parsed = Utility.ParseQueryString(extraParameter);
+                    sendParameter = sendParameter.Concat(parsed.Select(x => new KeyValuePair<string, string>(x.Key.UrlDecode(), x.Value.UrlDecode())));
                 }
             }
 

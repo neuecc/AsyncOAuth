@@ -29,8 +29,8 @@ namespace AsyncOAuth
 
         public static string UrlDecode(this string stringToUnescape)
         {
+            stringToUnescape = stringToUnescape.Replace("+", " ");
             return Uri.UnescapeDataString(stringToUnescape)
-                .Replace("+", " ")
                 .Replace("%21", "!")
                 .Replace("%2A", "*")
                 .Replace("%27", "'")
