@@ -30,6 +30,7 @@ namespace AsyncOAuth
         public static string UrlDecode(this string stringToUnescape)
         {
             return Uri.UnescapeDataString(stringToUnescape)
+                .Replace("+", " ")
                 .Replace("%21", "!")
                 .Replace("%2A", "*")
                 .Replace("%27", "'")
