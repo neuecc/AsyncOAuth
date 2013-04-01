@@ -45,7 +45,7 @@ namespace AsyncOAuth
             var queryParams = Utility.ParseQueryString(uri.Query);
 
             var stringParameter = parameters
-                .Where(x => x.Key.ToUpper() != "realm")
+                .Where(x => x.Key.ToLower() != "realm")
                 .Concat(queryParams)
                 .OrderBy(p => p.Key)
                 .ThenBy(p => p.Value)
