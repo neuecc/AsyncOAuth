@@ -22,8 +22,8 @@ namespace AsyncOAuth
         {
             var client = new HttpClient(handler);
 
-            var response = await client.PostAsync(url, postValue ?? new FormUrlEncodedContent(Enumerable.Empty<KeyValuePair<string, string>>()));
-            var tokenBase = await response.Content.ReadAsStringAsync();
+            var response = await client.PostAsync(url, postValue ?? new FormUrlEncodedContent(Enumerable.Empty<KeyValuePair<string, string>>())).ConfigureAwait(false);
+            var tokenBase = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {

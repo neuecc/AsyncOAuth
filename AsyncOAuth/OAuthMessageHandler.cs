@@ -36,7 +36,7 @@ namespace AsyncOAuth
                 // form url encoded content
                 if (request.Content is FormUrlEncodedContent)
                 {
-                    var extraParameter = await request.Content.ReadAsStringAsync();
+                    var extraParameter = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
                     var parsed = Utility.ParseQueryString(extraParameter);
                     sendParameter = sendParameter.Concat(parsed.Select(x => new KeyValuePair<string, string>(x.Key.UrlDecode(), x.Value.UrlDecode())));
                 }
@@ -51,7 +51,7 @@ namespace AsyncOAuth
             var header = headerParams.Select(p => p.Key + "=" + p.Value.Wrap("\"")).ToString(",");
             request.Headers.Authorization = new AuthenticationHeaderValue("OAuth", header);
 
-            return await base.SendAsync(request, cancellationToken);
+            return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
         }
     }
 }
