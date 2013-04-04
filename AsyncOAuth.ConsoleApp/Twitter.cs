@@ -74,6 +74,8 @@ namespace AsyncOAuth.ConsoleApp
         public async Task GetStream(Action<string> fetchAction)
         {
             var client = OAuthUtility.CreateOAuthClient(consumerKey, consumerSecret, accessToken);
+            client.Timeout = System.Threading.Timeout.InfiniteTimeSpan; // set infinite timespan
+
             using (var stream = await client.GetStreamAsync("https://userstream.twitter.com/1.1/user.json"))
             using (var sr = new StreamReader(stream))
             {
@@ -93,6 +95,8 @@ namespace AsyncOAuth.ConsoleApp
         //        try
         //        {
         //            var client = OAuthUtility.CreateOAuthClient(consumerKey, consumerSecret, accessToken);
+        //            client.Timeout = System.Threading.Timeout.InfiniteTimeSpan; // set infinite timespan
+        //
         //            using (var stream = await client.GetStreamAsync("https://userstream.twitter.com/1.1/user.json"))
         //            using (var sr = new StreamReader(stream))
         //            {
