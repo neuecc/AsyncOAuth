@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
+#pragma warning disable 612, 618
+
 namespace AsyncOAuth
 {
     /// <summary>represents OAuth Token</summary>
@@ -16,7 +18,7 @@ namespace AsyncOAuth
         public string Secret { get; private set; }
 
         /// <summary>for serialize.</summary>
-        [Obsolete]
+        [Obsolete("this is used for serialize")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Token()
         {
@@ -38,7 +40,7 @@ namespace AsyncOAuth
     public class AccessToken : Token
     {
         /// <summary>for serialize.</summary>
-        [Obsolete]
+        [Obsolete("this is used for serialize")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessToken()
         {
@@ -57,7 +59,7 @@ namespace AsyncOAuth
         /// <summary>
         /// for serialize.
         /// </summary>
-        [Obsolete]
+        [Obsolete("this is used for serialize")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RequestToken()
         {
@@ -69,3 +71,5 @@ namespace AsyncOAuth
         { }
     }
 }
+
+#pragma warning restore 612, 618

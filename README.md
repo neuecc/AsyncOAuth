@@ -99,6 +99,12 @@ public async static Task<AccessToken> AuthorizeSample(string consumerKey, string
 }
 ```
 
+History
+---
+ver.0.6.4 - 2013-05-27
+    update external library version.
+    improved:Token is serializable.
+
 License
 ---
 under [MIT License](http://opensource.org/licenses/MIT)
