@@ -63,7 +63,7 @@ namespace AsyncOAuth
         {
             Precondition.NotNull(url, "url");
 
-            var parameters = new List<KeyValuePair<string, string>>()
+            var parameters = new List<KeyValuePair<string, string>>(capacity: 7)
             {
                 new KeyValuePair<string,string>("oauth_consumer_key", consumerKey),
                 new KeyValuePair<string,string>("oauth_nonce", random.Next().ToString() ),
