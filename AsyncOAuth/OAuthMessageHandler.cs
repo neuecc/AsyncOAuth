@@ -44,7 +44,7 @@ namespace AsyncOAuth
 
             var headerParams = OAuthUtility.BuildBasicParameters(
                 consumerKey, consumerSecret,
-                request.RequestUri.ToString(), request.Method, token,
+                request.RequestUri.OriginalString, request.Method, token,
                 sendParameter);
             headerParams = headerParams.Concat(parameters);
 

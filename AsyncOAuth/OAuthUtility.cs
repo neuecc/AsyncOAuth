@@ -37,18 +37,18 @@ namespace AsyncOAuth
         {
             if (ComputeHash == null)
             {
-                throw new InvalidOperationException("ComputeHash is null, must initialize before call OAuthUtility.HashInitialize() at once.");
+                throw new InvalidOperationException("ComputeHash is null, must initialize before call OAuthUtility.HashFunction = /* your computeHash code */ at once.");
             }
 
             var hmacKeyBase = consumerSecret.UrlEncode() + "&" + ((token == null) ? "" : token.Secret).UrlEncode();
 
-            var queryParams = Utility.ParseQueryString(uri.Query);
+            var queryParams = Utility.ParseQueryString(uri.GetComponents(UriComponents.Query | UriComponents.KeepDelimiter, UriFormat.Unescaped));
 
             var stringParameter = parameters
                 .Where(x => x.Key.ToLower() != "realm")
                 .Concat(queryParams)
-                .OrderBy(p => p.Key)
-                .ThenBy(p => p.Value)
+                .OrderBy(p => p.Key, StringComparer.Ordinal)
+                .ThenBy(p => p.Value, StringComparer.Ordinal)
                 .Select(p => p.Key.UrlEncode() + "=" + p.Value.UrlEncode())
                 .ToString("&");
             var signatureBase = method.ToString() +
