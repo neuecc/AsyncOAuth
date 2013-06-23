@@ -5,9 +5,9 @@ Portable Client Library and HttpClient based OAuth library, including all platfo
 
 Install
 ---
-using with NuGet(Including PreRelease), [AsyncOAuth](https://nuget.org/packages/AsyncOAuth/)
+using with NuGet, [AsyncOAuth](https://nuget.org/packages/AsyncOAuth/)
 ```
-PM> Install-Package AsyncOAuth -Pre
+PM> Install-Package AsyncOAuth
 ```
 
 Usage
@@ -101,6 +101,10 @@ public async static Task<AccessToken> AuthorizeSample(string consumerKey, string
 
 History
 ---
+ver 0.7.0 - 2013-06-24
+    fixed, generate wrong OAuth signature when parameter-name mixed lower and upper.
+    fixed, generate wrong OAuth signature when get and querystring needs UrlEncode
+
 ver.0.6.4 - 2013-05-27
     update external library version.
     improved:Token is serializable.
