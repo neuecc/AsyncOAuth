@@ -1,1 +1,1 @@
-nuget push AsyncOAuth.0.6.4-beta.nupkg
+nuget push AsyncOAuth.0.7.0.nupkg
