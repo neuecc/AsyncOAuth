@@ -42,7 +42,7 @@ namespace AsyncOAuth
 
             var hmacKeyBase = consumerSecret.UrlEncode() + "&" + ((token == null) ? "" : token.Secret).UrlEncode();
 
-            var queryParams = Utility.ParseQueryString(uri.GetComponents(UriComponents.Query | UriComponents.KeepDelimiter, UriFormat.Unescaped));
+            var queryParams = Utility.ParseQueryString(uri.GetComponents(UriComponents.Query | UriComponents.KeepDelimiter, UriFormat.UriEscaped));
 
             var stringParameter = parameters
                 .Where(x => x.Key.ToLower() != "realm")
