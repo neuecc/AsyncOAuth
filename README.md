@@ -101,7 +101,7 @@ public async static Task<AccessToken> AuthorizeSample(string consumerKey, string
 
 History
 ---
-ver 0.8.0 - 2013-09-30
+ver 0.8.1 - 2013-09-30
 * fixed, generate wrong OAuth signature when parameter have same key and value needs UrlEncode  
 * modified, escape character in URLs. thanks @gjulianm #6  
 * update HttpClient version - to 2.2.15.
