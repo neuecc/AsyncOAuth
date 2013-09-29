@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 
 namespace AsyncOAuth
 {
@@ -45,7 +42,8 @@ namespace AsyncOAuth
                .Select(x =>
                {
                    var xs = x.Split('=');
-                   return new KeyValuePair<string, string>(xs[0], xs[1]);
+                   var unescapedValue = Uri.UnescapeDataString(xs[1]);
+                   return new KeyValuePair<string, string>(xs[0], unescapedValue);
                });
 
             return queryParams;
