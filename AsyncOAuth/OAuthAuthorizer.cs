@@ -30,9 +30,10 @@ namespace AsyncOAuth
                 throw new HttpRequestException(response.StatusCode + ":" + tokenBase); // error message
             }
 
-            var splitted = tokenBase.Split('&').Select(s => s.Split('=')).ToDictionary(s => s.First(), s => s.Last());
-            var token = tokenFactory(splitted["oauth_token"].UrlDecode(), splitted["oauth_token_secret"].UrlDecode());
+            var splitted = tokenBase.Split('&').Select(s => s.Split('=')).ToLookup(xs => xs[0], xs => xs[1]);
+            var token = tokenFactory(splitted["oauth_token"].First().UrlDecode(), splitted["oauth_token_secret"].First().UrlDecode());
             var extraData = splitted.Where(kvp => kvp.Key != "oauth_token" && kvp.Key != "oauth_token_secret")
+                .SelectMany(g => g, (g, value) => new { g.Key, Value = value })
                 .ToLookup(kvp => kvp.Key, kvp => kvp.Value);
             return new TokenResponse<T>(token, extraData);
         }
