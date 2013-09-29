@@ -42,14 +42,16 @@ namespace AsyncOAuth
 
             var hmacKeyBase = consumerSecret.UrlEncode() + "&" + ((token == null) ? "" : token.Secret).UrlEncode();
 
+            // escaped => unescaped[]
             var queryParams = Utility.ParseQueryString(uri.GetComponents(UriComponents.Query | UriComponents.KeepDelimiter, UriFormat.UriEscaped));
 
             var stringParameter = parameters
                 .Where(x => x.Key.ToLower() != "realm")
                 .Concat(queryParams)
+                .Select(p => new { Key = p.Key.UrlEncode(), Value = p.Value.UrlEncode() })
                 .OrderBy(p => p.Key, StringComparer.Ordinal)
                 .ThenBy(p => p.Value, StringComparer.Ordinal)
-                .Select(p => p.Key.UrlEncode() + "=" + p.Value.UrlEncode())
+                .Select(p => p.Key + "=" + p.Value)
                 .ToString("&");
             var signatureBase = method.ToString() +
                 "&" + uri.GetComponents(UriComponents.SchemeAndServer | UriComponents.Path, UriFormat.Unescaped).UrlEncode() +

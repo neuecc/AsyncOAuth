@@ -42,8 +42,7 @@ namespace AsyncOAuth
                .Select(x =>
                {
                    var xs = x.Split('=');
-                   var unescapedValue = Uri.UnescapeDataString(xs[1]);
-                   return new KeyValuePair<string, string>(xs[0], unescapedValue);
+                   return new KeyValuePair<string, string>(Uri.UnescapeDataString(xs[0]), Uri.UnescapeDataString(xs[1]));
                });
 
             return queryParams;
