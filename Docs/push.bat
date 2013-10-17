@@ -1,1 +1,1 @@
-nuget push AsyncOAuth.0.8.2.nupkg
+nuget push AsyncOAuth.0.8.3.nupkg
