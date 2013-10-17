@@ -102,7 +102,7 @@ public async static Task<AccessToken> AuthorizeSample(string consumerKey, string
 History
 ---
 ver 0.8.3 - 2013-10-17
-* fixed, generate wrong signature when data contains space(This enbug is from v.0.8.2)
+* fixed, generate wrong signature when data contains space(This enbug is from v.0.8.1)
 
 ver 0.8.2 - 2013-09-30
 * fixed, allow OAuth TokenResponse returns duplicate key  
