@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -19,16 +20,16 @@ namespace AsyncOAuth
         /// <para>ex(WinRT): </para>
         /// <para>ComputeHash = (key, buffer) =></para>
         /// <para>{</para>
-        /// <para>&#160;&#160;&#160;&#160;var crypt = Windows.Security.Cryptography.Core.MacAlgorithmProvider.OpenAlgorithm("HMAC_SHA1");</para>
-        /// <para>&#160;&#160;&#160;&#160;var keyBuffer = Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(key);</para>
-        /// <para>&#160;&#160;&#160;&#160;var cryptKey = crypt.CreateKey(keyBuffer);</para>
-        /// <para>&#160;</para>
-        /// <para>&#160;&#160;&#160;&#160;var dataBuffer = Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(buffer);</para>
-        /// <para>&#160;&#160;&#160;&#160;var signBuffer = Windows.Security.Cryptography.Core.CryptographicEngine.Sign(cryptKey, dataBuffer);</para>
-        /// <para>&#160;</para>
-        /// <para>&#160;&#160;&#160;&#160;byte[] value;</para>
-        /// <para>&#160;&#160;&#160;&#160;Windows.Security.Cryptography.CryptographicBuffer.CopyToByteArray(signBuffer, out value);</para>
-        /// <para>&#160;&#160;&#160;&#160;return value;</para>
+        /// <para>var crypt = Windows.Security.Cryptography.Core.MacAlgorithmProvider.OpenAlgorithm("HMAC_SHA1");</para>
+        /// <para>var keyBuffer = Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(key);</para>
+        /// <para>var cryptKey = crypt.CreateKey(keyBuffer);</para>
+        /// <para></para>
+        /// <para>var dataBuffer = Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(buffer);</para>
+        /// <para>var signBuffer = Windows.Security.Cryptography.Core.CryptographicEngine.Sign(cryptKey, dataBuffer);</para>
+        /// <para></para>
+        /// <para>byte[] value;</para>
+        /// <para>Windows.Security.Cryptography.CryptographicBuffer.CopyToByteArray(signBuffer, out value);</para>
+        /// <para>return value;</para>
         /// <para>};</para>
         /// </summary>
         public static HashFunction ComputeHash { private get; set; }
@@ -44,7 +45,11 @@ namespace AsyncOAuth
 
             // escaped => unescaped[]
             var queryParams = Utility.ParseQueryString(uri.GetComponents(UriComponents.Query | UriComponents.KeepDelimiter, UriFormat.UriEscaped));
-
+         
+            
+            var encodedLocalPath = Utility.EncodedPath(Utility.ParseUrlSegments(uri.LocalPath)).TrimStart('/');
+            var baseUrl = uri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped);
+         
             var stringParameter = parameters
                 .Where(x => x.Key.ToLower() != "realm")
                 .Concat(queryParams)
@@ -54,10 +59,12 @@ namespace AsyncOAuth
                 .Select(p => p.Key + "=" + p.Value)
                 .ToString("&");
             var signatureBase = method.ToString() +
-                "&" + uri.GetComponents(UriComponents.SchemeAndServer | UriComponents.Path, UriFormat.Unescaped).UrlEncode() +
+                "&" + (baseUrl +"/"+ encodedLocalPath).UrlEncode() +
                 "&" + stringParameter.UrlEncode();
+            Debug.WriteLine(signatureBase);
 
             var hash = ComputeHash(Encoding.UTF8.GetBytes(hmacKeyBase), Encoding.UTF8.GetBytes(signatureBase));
+
             return Convert.ToBase64String(hash).UrlEncode();
         }
 

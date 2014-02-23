@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AsyncOAuth
 {
@@ -12,7 +13,11 @@ namespace AsyncOAuth
             return (long)(target - unixEpoch).TotalSeconds;
         }
 
-        /// <summary>Escape RFC3986 String</summary>
+        ///  <summary>Escape RFC3986 String</summary>
+     
+        /// <param name="stringToEscape"></param>
+        /// <returns></returns>
+
         public static string UrlEncode(this string stringToEscape)
         {
             return Uri.EscapeDataString(stringToEscape)
@@ -20,9 +25,15 @@ namespace AsyncOAuth
                 .Replace("*", "%2A")
                 .Replace("'", "%27")
                 .Replace("(", "%28")
-                .Replace(")", "%29");
+                .Replace(")", "%29")
+                .Replace(" ", "%20")
+                ;
         }
+        /**/
 
+
+
+     
 
         public static string UrlDecode(this string stringToUnescape)
         {
@@ -33,6 +44,27 @@ namespace AsyncOAuth
                 .Replace("%27", "'")
                 .Replace("%28", "(")
                 .Replace("%29", ")");
+        }
+
+        public static List<string> ParseUrlSegments (string path)
+        {
+            var segments = path.Split('/');
+            List<string> encodedSegments = new List<string>();
+            foreach (var item in segments)
+            {
+                encodedSegments.Add(item.UrlEncode());
+            }
+            return encodedSegments;
+        }
+
+        public static string EncodedPath(List<string> urlSegments)
+        {
+            StringBuilder p = new StringBuilder();
+            foreach (var item in urlSegments)
+            {
+                p.AppendFormat("/{0}", item);
+            }
+            return p.ToString();
         }
 
         public static IEnumerable<KeyValuePair<string, string>> ParseQueryString(string query)
