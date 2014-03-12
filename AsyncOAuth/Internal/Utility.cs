@@ -23,11 +23,9 @@ namespace AsyncOAuth
                 .Replace(")", "%29");
         }
 
-
         public static string UrlDecode(this string stringToUnescape)
         {
-            stringToUnescape = stringToUnescape.Replace("+", " ");
-            return Uri.UnescapeDataString(stringToUnescape)
+            return UrlDecodeForPost(stringToUnescape)
                 .Replace("%21", "!")
                 .Replace("%2A", "*")
                 .Replace("%27", "'")
@@ -35,14 +33,28 @@ namespace AsyncOAuth
                 .Replace("%29", ")");
         }
 
-        public static IEnumerable<KeyValuePair<string, string>> ParseQueryString(string query)
+        public static string UrlDecodeForPost(this string stringToUnescape)
+        {
+            stringToUnescape = stringToUnescape.Replace("+", " ");
+            return Uri.UnescapeDataString(stringToUnescape);
+        }
+
+
+        public static IEnumerable<KeyValuePair<string, string>> ParseQueryString(string query, bool post = false)
         {
             var queryParams = query.TrimStart('?').Split('&')
                .Where(x => x != "")
                .Select(x =>
                {
                    var xs = x.Split('=');
-                   return new KeyValuePair<string, string>(xs[0].UrlDecode(), xs[1].UrlDecode());
+                   if (post)
+                   {
+                       return new KeyValuePair<string, string>(xs[0].UrlDecode(), xs[1].UrlDecodeForPost());
+                   }
+                   else
+                   {
+                       return new KeyValuePair<string, string>(xs[0].UrlDecode(), xs[1].UrlDecode());
+                   }
                });
 
             return queryParams;

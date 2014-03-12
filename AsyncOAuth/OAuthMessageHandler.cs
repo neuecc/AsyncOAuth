@@ -38,7 +38,7 @@ namespace AsyncOAuth
                 {
                     // url encoded string
                     var extraParameter = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    var parsed = Utility.ParseQueryString(extraParameter); // url decoded
+                    var parsed = Utility.ParseQueryString(extraParameter, true); // url decoded
                     sendParameter = sendParameter.Concat(parsed);
                 }
             }
