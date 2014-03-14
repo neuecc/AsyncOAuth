@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>AsyncOAuth</id>
-        <version>0.8.3</version>
+        <version>0.8.4</version>
         <title>AsyncOAuth</title>
         <authors>neuecc</authors>
         <owners>neuecc</owners>
@@ -14,34 +14,34 @@
         <tags>OAuth HttpClient PCL</tags>
         <dependencies>
             <group targetFramework="net45">
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="netcore45">
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="windowsphone8">
-                <dependency id="Microsoft.Net.Http" version="2.2.15" />
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Net.Http" version="2.2.18" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="net40">
-                <dependency id="Microsoft.Net.Http" version="2.2.15" />
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Net.Http" version="2.2.18" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="sl4-windowsphone71">
-                <dependency id="Microsoft.Net.Http" version="2.2.15" />
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Net.Http" version="2.2.18" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="sl4">
-                <dependency id="Microsoft.Net.Http" version="2.2.15" />
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Net.Http" version="2.2.18" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="sl5">
-                <dependency id="Microsoft.Net.Http" version="2.2.15" />
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Net.Http" version="2.2.18" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
             <group targetFramework="portable-sl4+wp71+windows8">
-                <dependency id="Microsoft.Net.Http" version="2.2.15" />
-                <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+                <dependency id="Microsoft.Net.Http" version="2.2.18" />
+                <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
             </group>
         </dependencies>
         <frameworkAssemblies>

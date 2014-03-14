@@ -101,6 +101,11 @@ public async static Task<AccessToken> AuthorizeSample(string consumerKey, string
 
 History
 ---
+ver 0.8.4 - 2014-03-14
+* fixed, generate wrong signature when data contains "%21", "%2A", "%27", "%28" and "%29". thanks @karno #11
+* update Microsoft.Bcl.Async to 1.0.165
+* update Microsoft.Net.Http to 2.2.18
+
 ver 0.8.3 - 2013-10-17
 * fixed, generate wrong signature when data contains space(This enbug is from v.0.8.1)
 

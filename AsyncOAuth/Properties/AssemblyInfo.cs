@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AsyncOAuth")]
-[assembly: AssemblyCopyright("Copyright (C)  2013")]
+[assembly: AssemblyCopyright("Copyright (C)  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.8.3.0")]
-[assembly: AssemblyFileVersion("0.8.3.0")]
+[assembly: AssemblyVersion("0.8.4.0")]
+[assembly: AssemblyFileVersion("0.8.4.0")]
