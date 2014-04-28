@@ -56,7 +56,7 @@ namespace AsyncOAuth.ConsoleApp
         {
             var client = OAuthUtility.CreateOAuthClient(consumerKey, consumerSecret, accessToken);
 
-            var json = await client.GetStringAsync("http://api.twitter.com/1.1/statuses/home_timeline.json?count=" + count + "&page=" + page);
+            var json = await client.GetStringAsync("https://api.twitter.com/1.1/statuses/home_timeline.json?count=" + count + "&page=" + page);
             return json;
         }
 
@@ -66,7 +66,7 @@ namespace AsyncOAuth.ConsoleApp
 
             var content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("status", status) });
 
-            var response = await client.PostAsync("http://api.twitter.com/1.1/statuses/update.json", content);
+            var response = await client.PostAsync("https://api.twitter.com/1.1/statuses/update.json", content);
             var json = await response.Content.ReadAsStringAsync();
             return json;
         }
