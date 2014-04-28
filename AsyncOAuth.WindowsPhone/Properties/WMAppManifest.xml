@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+  <DefaultLanguage xmlns="" code="ja-JP"/>
+  <App xmlns="" ProductID="{3ddab5fd-1c25-4771-a95b-2322c18866ed}" Title="AsyncOAuth.WindowsPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="AsyncOAuth.WindowsPhone author" Description="Sample description" Publisher="AsyncOAuth.WindowsPhone" PublisherID="{e6769b74-9e67-41b6-ac4a-e4e1c81e797c}">
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING"/>
+      <Capability Name="ID_CAP_MEDIALIB_AUDIO"/>
+      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK"/>
+      <Capability Name="ID_CAP_SENSORS"/>
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT"/>
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml"/>
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="AsyncOAuth.WindowsPhoneToken" TaskName="_default">
+        <TemplateFlip>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <Count>0</Count>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
+          <Title>AsyncOAuth.WindowsPhone</Title>
+          <BackContent></BackContent>
+          <BackBackgroundImageURI></BackBackgroundImageURI>
+          <BackTitle></BackTitle>
+          <DeviceLockImageURI></DeviceLockImageURI>
+          <HasLarge></HasLarge>
+        </TemplateFlip>
+      </PrimaryToken>
+    </Tokens>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA"/>
+      <ScreenResolution Name="ID_RESOLUTION_WXGA"/>
+      <ScreenResolution Name="ID_RESOLUTION_HD720P"/>
+    </ScreenResolutions>
+  </App>
+</Deployment>
