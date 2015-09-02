@@ -25,10 +25,7 @@ namespace AsyncOAuth
             var response = await client.PostAsync(url, postValue ?? new FormUrlEncodedContent(Enumerable.Empty<KeyValuePair<string, string>>())).ConfigureAwait(false);
             var tokenBase = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-            {
-                throw new HttpRequestException(response.StatusCode + ":" + tokenBase); // error message
-            }
+            response.EnsureSuccessStatusCode();
 
             var splitted = tokenBase.Split('&').Select(s => s.Split('=')).ToLookup(xs => xs[0], xs => xs[1]);
             var token = tokenFactory(splitted["oauth_token"].First().UrlDecode(), splitted["oauth_token_secret"].First().UrlDecode());
