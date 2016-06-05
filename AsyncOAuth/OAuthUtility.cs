@@ -76,9 +76,26 @@ namespace AsyncOAuth
             if (token != null) parameters.Add(new KeyValuePair<string, string>("oauth_token", token.Key));
             if (optionalParameters == null) optionalParameters = Enumerable.Empty<KeyValuePair<string, string>>();
 
+            //  generate the signature
             var signature = GenerateSignature(consumerSecret, new Uri(url), method, token, parameters.Concat(optionalParameters));
 
+            //  add the signature to the parameters
             parameters.Add(new KeyValuePair<string, string>("oauth_signature", signature));
+
+            //  TODO - this is a change made to get library to work with ETrade OAuth login
+            //  the token must be URL encoded, but if you URL encode token prior to generate signature, signature is incorrect
+            //  this is brute force solution that worked for me, but there is probably a better way to handle this
+            try
+            {
+                var findToken = parameters.First(x => x.Key == "oauth_token");
+
+                parameters.Remove(findToken);
+                parameters.Add(new KeyValuePair<string, string>(findToken.Key, findToken.Value.UrlEncode()));
+            }
+            catch
+            {
+                //  oauth_token is not in the header, continue
+            }
 
             return parameters;
         }
