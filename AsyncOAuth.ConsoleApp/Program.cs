@@ -12,14 +12,10 @@ namespace AsyncOAuth.ConsoleApp
     class Program
     {
         // set your token
-        /*Dear Graham Briggs,
-                   This message is regarding the E*TRADE API.
-                   Your key and secret for the sandbox environment are as follows:
-                       oauth_consumer_key: b3de705c7e73dba19ed2cd406f24ea00 
-                       consumer_secret: 41486fa59ab14b564d294b8b18e3fcb7	*/
+       
 
-        const string consumerKey = "b3de705c7e73dba19ed2cd406f24ea00";
-        const string consumerSecret = "41486fa59ab14b564d294b8b18e3fcb7";
+        const string consumerKey = "yourConsumerKey";
+        const string consumerSecret = "yourConsumerToken";
 
         static async Task Run()
         {
