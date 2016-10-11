@@ -33,7 +33,7 @@ namespace AsyncOAuth
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
             var sendParameter = parameters;
-            if (request.Method == HttpMethod.Post)
+            if (request.Method == HttpMethod.Post || request.Method == HttpMethod.Put)
             {
                 // form url encoded content
                 if (request.Content is FormUrlEncodedContent)
